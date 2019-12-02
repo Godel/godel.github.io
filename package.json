@@ -8,7 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "ngh-publish": "ng build --prod --base-href https://godel.github.io/ && ngh"
+    "ngh-publish": "ng build --prod --base-href https://godel.github.io/ && ngh —branch=master"
   },
   "private": true,
   "dependencies": {
