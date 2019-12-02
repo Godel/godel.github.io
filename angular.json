@@ -122,8 +122,13 @@
               "devServerTarget": "godel-github-io:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "angular-cli-ghpages:deploy",
+          "options": {}
         }
       }
-    }},
+    }
+  },
   "defaultProject": "godel-github-io"
 }
