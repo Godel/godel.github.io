@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 type TypeConstructor<T> = (value: any) => T;
 
 export abstract class BaseApiService {
-    protected apiRelativePath: string = 'https://api.github.com/';
+    protected apiRelativePath = 'https://api.github.com/';
 
     constructor(protected http: HttpClient) {
     }

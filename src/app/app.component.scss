@@ -1,12 +1,35 @@
-@import '~@angular/material/theming';
-
 :host {
     background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 64px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.main-container {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
+    margin: 60px auto 20px 35px;
+    width: 600px;
+}
+
+.mat-toolbar-row {
+    flex-direction: row-reverse;
 }
 
 .label {
@@ -31,6 +54,13 @@
     padding: 20px;
 }
 
-.mat-card-header {
-    background-color: primary;
+.mat-form-field {
+    margin-right: 20px;
+    width: 300px;
+    font-size: 14px;
+
+    .material-icons {
+        vertical-align: -5px;
+        margin: 0 10px;
+    }
 }
