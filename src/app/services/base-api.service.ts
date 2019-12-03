@@ -13,10 +13,9 @@ export abstract class BaseApiService {
     }
 
     protected httpGet<T>(url: string, ctor: TypeConstructor<T>, options: HttpHeaders = null): Observable<any> {
-        const request: Observable<any> = this.http.get<T>(`${this.apiRelativePath}${url}`, { observe: 'response', headers: options }).pipe(
-            map((result: HttpResponse<T>) => this.mapType<T>(result, ctor)),
-            share()
-        );
+        const request: Observable<any> = this.http.get<T>(`${this.apiRelativePath}${url}`, { observe: 'response', headers: options })
+            .pipe(map((result: HttpResponse<T>) => this.mapType<T>(result, ctor)), share());
+
         request.subscribe(result =>
             this.handleSuccess({ url: `${this.apiRelativePath}${url}`, response: result }),
             this.handleError.bind(this)

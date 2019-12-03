@@ -1,3 +1,9 @@
+@import '~@angular/material/theming';
+
+:host {
+    background-color: #fafafa;
+}
+
 .logo {
     width: 48px;
     height: 48px;
@@ -5,4 +11,26 @@
 
 .label {
     padding: 0 15px;
+}
+
+.card {
+    margin: 15px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cards-container {
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-image {
+    margin: auto;
+    padding: 20px;
+}
+
+.mat-card-header {
+    background-color: primary;
 }

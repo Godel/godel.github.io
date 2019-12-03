@@ -4,3 +4,20 @@
         <span class="label">Godel Technologies Europe Limited</span>
     </mat-toolbar-row>
 </mat-toolbar>
+
+<div class="cards-container">
+    <mat-card class="card" *ngFor="let repository of repositoryList">
+        <mat-card-header>
+            <mat-card-title>{{ repository.name }}</mat-card-title>
+            <mat-card-subtitle>{{ repository.language }} language</mat-card-subtitle>
+        </mat-card-header>
+        <img class="card-image" src="../assets/dotNet-logo.png" alt="../assets/godel.png">
+        <mat-card-content>
+            <p>{{ repository.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button color="primary" mat-raised-button (click)="onDetailsOpen(repository.id)">Details</button>
+            <a color="primary" mat-raised-button [href]="repository.html_url">Repository Link</a>
+        </mat-card-actions>
+    </mat-card>
+</div>

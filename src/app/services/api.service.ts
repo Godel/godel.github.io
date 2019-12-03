@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { BaseApiService } from './base-api.service';
-import { RepositoryListModel } from '../models/repository-list.model';
+import { RepositoryModel } from '../models/repository.model';
 
 @Injectable()
 export class ApiService extends BaseApiService {
@@ -12,6 +12,6 @@ export class ApiService extends BaseApiService {
 
     }
     getRepositoryList(): Observable<any> {
-        return this.httpGet('orgs/godel/repos', x => new RepositoryListModel(x));
+        return this.httpGet('orgs/godel/repos', x => new RepositoryModel(x));
     }
 }
