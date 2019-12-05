@@ -1,15 +1,13 @@
 <mat-toolbar color="primary">
     <mat-toolbar-row>
+        <span class="label">Open Source</span>
+        <div class="spacer"></div>
         <a mat-button [href]="githubLink">
             <span class="mat-button-wrapper">
                 <img src="../assets/github.svg">
                 GitHub
             </span>
         </a>
-        <mat-form-field>
-            <mat-icon matPrefix aria-label="Search">search</mat-icon>
-            <input matInput placeholder="Search" [formControl]="searchControl"/>
-        </mat-form-field>
     </mat-toolbar-row>
 </mat-toolbar>
 
@@ -18,20 +16,5 @@
         <img class="logo" src="../assets/godel-logo.svg">
     </div>
 
-    <div class="cards-container">
-        <mat-card class="card" *ngFor="let repository of filteredRepositoryList">
-            <mat-card-header>
-                <mat-card-title>{{ repository.name }}</mat-card-title>
-                <mat-card-subtitle>{{ repository.language }} language</mat-card-subtitle>
-            </mat-card-header>
-            <img class="card-image" src="../assets/dotNet.png">
-            <mat-card-content>
-                <p>{{ repository.description }}</p>
-            </mat-card-content>
-            <mat-card-actions>
-                <button color="primary" mat-raised-button (click)="onDetailsOpen(repository.id)">Details</button>
-                <a color="primary" mat-raised-button [href]="repository.html_url">Repository Link</a>
-            </mat-card-actions>
-        </mat-card>
-    </div>
+    <router-outlet></router-outlet>
 </div>
