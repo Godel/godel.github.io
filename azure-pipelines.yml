@@ -4,7 +4,16 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
+  branches:
+    include:
+    - '*'
+    exclude:
+    - master # master excluded because it stores GitHub Pages files
+
+pr:
+  branches:
+    include:
+    - '*'
 
 pool:
   vmImage: 'ubuntu-latest'
