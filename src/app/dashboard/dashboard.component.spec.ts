@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { of } from 'rxjs';
 
 import { ApiService } from '../services/api.service';
 import { DashboardComponent } from './dashboard.component';
-import { of } from 'rxjs';
 
 describe('DashboardComponent', () => {
     let component: DashboardComponent;
