@@ -4,7 +4,7 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "npm run lint && npm run stylelint && ng build",
+        "build": "npm run lint && npm run stylelint && ng build --prod",
         "test": "ng test --code-coverage",
         "lint": "ng lint",
         "stylelint": "stylelint \"**/*.scss\"",
@@ -49,6 +49,7 @@
         "karma-coverage-istanbul-reporter": "~2.0.1",
         "karma-jasmine": "~2.0.1",
         "karma-jasmine-html-reporter": "^1.4.0",
+        "karma-junit-reporter": "^2.0.1",
         "protractor": "~5.4.0",
         "ts-node": "~7.0.0",
         "tslint": "^5.15.0",
