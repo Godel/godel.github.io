@@ -56,9 +56,3 @@ steps:
     testRunTitle: Angular
     testResultsFormat: JUnit
     testResultsFiles: "**/TESTS*.xml"
-
-- task: DeleteFiles@1
-  displayName: 'Delete JUnit files'
-  inputs:
-    SourceFolder: junit
-    Contents: 'TESTS*.xml'
