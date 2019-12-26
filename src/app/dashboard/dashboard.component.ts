@@ -10,19 +10,14 @@ import { RepositoryModel } from '../models/repository.model';
     styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-
     repositoryList: RepositoryModel[];
     filteredRepositoryList: RepositoryModel[];
     searchControl = new FormControl();
 
-    constructor(private apiService: ApiService) {
-    }
+    constructor(private apiService: ApiService) { }
 
     ngOnInit(): void {
-        this.apiService.getRepositoryList().subscribe((x: RepositoryModel[]) => {
-            this.repositoryList = x;
-            this.filteredRepositoryList = this.repositoryList;
-        });
+        this.loadRepositoryList();
         this.searchControl.valueChanges.subscribe((term: string) => this.onSearchTermChange(term));
     }
 
@@ -39,5 +34,12 @@ export class DashboardComponent implements OnInit {
                 || x.language && x.language.toLowerCase().includes(term.toLowerCase())
             );
         }
+    }
+
+    private loadRepositoryList(): void {
+        this.apiService.getRepositoryList().subscribe((x: RepositoryModel[]) => {
+            this.repositoryList = x;
+            this.filteredRepositoryList = this.repositoryList;
+        });
     }
 }
