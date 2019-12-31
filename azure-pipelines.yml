@@ -81,8 +81,9 @@ stages:
         runOnce:
           deploy:
             steps:
-            - task: Npm@1
+            - task: CmdLine@2
               displayName: 'Publish GitHub Pages'
               inputs:
-                command: 'custom'
-                customCommand: 'ng deploy --branch=master'
+                script: |
+                  echo Write your commands here
+                  echo Hello world
