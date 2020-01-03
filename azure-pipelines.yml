@@ -82,15 +82,23 @@ stages:
           deploy:
             steps:
 
-            - task: CmdLine@2
-              displayName: 'Commit pages'
-              inputs:
-                workingDirectory: '$(System.DefaultWorkingDirectory)/dist'
-                script: |
-                  git config --global user.name "Azure Pipelines"
-                  git config --global user.email "azuredevops@microsoft.com"
-                  git add .
-                  git commit -m "Auto-generated commit"
+            - script: |
+                ./docs.sh
+                git config user.name "Azure Pipelines"
+                git config user.email "azuredevops@microsoft.com"
+                git add .
+                git commit -m "Publishing GitHub Pages  ***NO_CI***"
+              displayName: 'Build and commit pages'
+
+            # - task: CmdLine@2
+            #   displayName: 'Commit pages'
+            #   inputs:
+            #     workingDirectory: '$(System.DefaultWorkingDirectory)/dist'
+            #     script: |
+            #       git config --global user.name "Azure Pipelines"
+            #       git config --global user.email "azuredevops@microsoft.com"
+            #       git add .
+            #       git commit -m "Auto-generated commit ***NO_CI***"
 
             - task: DownloadSecureFile@1
               displayName: 'Get the deploy key'
