@@ -87,9 +87,9 @@ stages:
                 git config --local user.name "Azure Pipelines"
                 git config --local user.email "azuredevops@microsoft.com"
                 git add .
-                git commit -m "Auto-generated commit  ***NO_CI***"
+                git commit -m "Auto-generated commit"
               displayName: 'Commit changes'
-              workingDirectory: $(Pipeline.Workspace)
+              workingDirectory: '$(Pipeline.Workspace)/website'
 
             - task: DownloadSecureFile@1
               displayName: 'Get the deploy key'
@@ -103,4 +103,4 @@ stages:
                 git remote add origin git@github.com:Godel/godel.github.io.git
                 git push origin HEAD:master --force
               displayName: 'Push into master'
-              workingDirectory: $(Pipeline.Workspace)
+              workingDirectory: '$(Pipeline.Workspace)/website'
