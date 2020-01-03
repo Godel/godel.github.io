@@ -101,6 +101,6 @@ stages:
                 chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
                 ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
                 git remote add origin git@github.com:Godel/godel.github.io.git
-                git push origin HEAD:master
+                git push origin HEAD:master --force
               displayName: 'Push into master'
               workingDirectory: $(Pipeline.Workspace)
