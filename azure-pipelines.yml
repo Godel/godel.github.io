@@ -86,8 +86,8 @@ stages:
               displayName: 'Commit pages'
               inputs:
                  script: |
-                  git config --local user.name "Azure Pipelines"
-                  git config --local user.email "azuredevops@microsoft.com"
+                  git config --global user.name "Azure Pipelines"
+                  git config --global user.email "azuredevops@microsoft.com"
                   git add .
                   git commit -m "Auto-generated commit"
 
