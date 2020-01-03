@@ -91,20 +91,21 @@ stages:
             #   displayName: 'Commit changes'
             #   workingDirectory: $(Build.StagingDirectory)
 
-            - task: CmdLine@2
-              displayName: 'Commit pages'
-              inputs:
-                workingDirectory: '$(Build.StagingDirectory)'
-                script: |
-                  git config user.name "Azure Pipelines"
-                  git config user.email "azuredevops@microsoft.com"
-                  git add .
-                  git commit -m "Auto-generated commit ***NO_CI***"
+            
 
             - task: DownloadSecureFile@1
               displayName: 'Get the deploy key'
               inputs:
                 secureFile: GodelGithubPagesDeployKey
+
+            - task: CmdLine@2
+              displayName: 'Commit pages'
+              inputs:
+                script: |
+                  git config user.name "Azure Pipelines"
+                  git config user.email "azuredevops@microsoft.com"
+                  git add .
+                  git commit -m "Auto-generated commit ***NO_CI***"
 
             - task: CmdLine@2
               displayName: 'Publish GitHub Pages'
