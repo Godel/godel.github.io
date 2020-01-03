@@ -86,6 +86,7 @@ stages:
               displayName: 'Commit pages'
               inputs:
                  script: |
+                  ./docs.sh
                   git config --global user.name "Azure Pipelines"
                   git config --global user.email "azuredevops@microsoft.com"
                   git add .
