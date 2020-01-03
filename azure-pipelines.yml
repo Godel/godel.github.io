@@ -82,31 +82,19 @@ stages:
           deploy:
             steps:
 
-            # - script: |
-            #     git init
-            #     git config --local user.name "Azure Pipelines"
-            #     git config --local user.email "azuredevops@microsoft.com"
-            #     git add .
-            #     git commit -m "Auto-generated commit  ***NO_CI***"
-            #   displayName: 'Commit changes'
-            #   workingDirectory: $(Build.StagingDirectory)
-
-            
+            - script: |
+                git init
+                git config --local user.name "Azure Pipelines"
+                git config --local user.email "azuredevops@microsoft.com"
+                git add .
+                git commit -m "Auto-generated commit  ***NO_CI***"
+              displayName: 'Commit changes'
+              workingDirectory: $(Pipeline.Workspace)
 
             - task: DownloadSecureFile@1
               displayName: 'Get the deploy key'
               inputs:
                 secureFile: GodelGithubPagesDeployKey
-
-            - task: CmdLine@2
-              displayName: 'Commit pages'
-              inputs:
-                script: |
-                  git config user.name "Azure Pipelines"
-                  git config user.email "azuredevops@microsoft.com"
-                  git add .
-                  git commit -m "Auto-generated commit ***NO_CI***"
-
             - task: CmdLine@2
               displayName: 'Publish GitHub Pages'
               inputs:
