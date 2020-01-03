@@ -81,12 +81,15 @@ stages:
         runOnce:
           deploy:
             steps:
-            - task: GitHubPagesPublish@1
-              displayName: 'Publish GitHub Pages'
+            - task: DownloadSecureFile@1
+              displayName: 'Get the deploy key'
               inputs:
-                docPath: '$(Pipeline.Workspace)/*'
-                githubusername: 'bot'
-                githubaccesstoken: '$(GitHubAccessToken)'
-                repositoryname: 'godel.github.io'
-                branchname: 'master'
-                commitmessage: 'Auto-generated commit $(Release.ReleaseId)'
+                secureFile: GodelGithubPagesDeployKey
+
+            - script: |
+                mkdir ~/.ssh && mv $DOWNLOADSECUREFILE_SECUREFILEPATH ~/.ssh/id_rsa
+                chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+                ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+                git remote set-url --push origin git@github.com:Godel/godel.github.io.git
+                git push origin HEAD:master
+              displayName: 'Publish GitHub Pages'
