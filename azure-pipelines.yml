@@ -39,29 +39,29 @@ stages:
           command: 'custom'
           customCommand: 'run build'
 
-      - task: Npm@1
-        displayName: 'npm run test'
-        inputs:
-          command: 'custom'
-          customCommand: 'run test'
+      # - task: Npm@1
+      #   displayName: 'npm run test'
+      #   inputs:
+      #     command: 'custom'
+      #     customCommand: 'run test'
 
-      - task: PublishCodeCoverageResults@1
-        displayName: 'Publish code coverage results'
-        condition: succeededOrFailed()
-        inputs:
-          codeCoverageTool: Cobertura
-          summaryFileLocation: 'coverage/cobertura-coverage.xml'
-          reportDirectory: coverage
-          failIfCoverageEmpty: true
+      # - task: PublishCodeCoverageResults@1
+      #   displayName: 'Publish code coverage results'
+      #   condition: succeededOrFailed()
+      #   inputs:
+      #     codeCoverageTool: Cobertura
+      #     summaryFileLocation: 'coverage/cobertura-coverage.xml'
+      #     reportDirectory: coverage
+      #     failIfCoverageEmpty: true
 
-      - task: PublishTestResults@2
-        displayName: 'Publish test results'
-        condition: succeededOrFailed()
-        inputs:
-          searchFolder: $(System.DefaultWorkingDirectory)/junit
-          testRunTitle: Angular
-          testResultsFormat: JUnit
-          testResultsFiles: "**/TESTS*.xml"
+      # - task: PublishTestResults@2
+      #   displayName: 'Publish test results'
+      #   condition: succeededOrFailed()
+      #   inputs:
+      #     searchFolder: $(System.DefaultWorkingDirectory)/junit
+      #     testRunTitle: Angular
+      #     testResultsFormat: JUnit
+      #     testResultsFiles: "**/TESTS*.xml"
 
       - task: PublishPipelineArtifact@1
         displayName: 'Publish Pipeline Artifact: website'
@@ -83,12 +83,13 @@ stages:
             steps:
 
             - script: |
-                ./docs.sh
-                git config user.name "Azure Pipelines"
-                git config user.email "azuredevops@microsoft.com"
+                git init
+                git config --local user.name "Azure Pipelines"
+                git config --local user.email "azuredevops@microsoft.com"
                 git add .
-                git commit -m "Publishing GitHub Pages  ***NO_CI***"
-              displayName: 'Build and commit pages'
+                git commit -m "Auto-generated commit  ***NO_CI***"
+              displayName: 'Commit changes'
+              workingDirectory: $(Build.StagingDirectory)
 
             # - task: CmdLine@2
             #   displayName: 'Commit pages'
