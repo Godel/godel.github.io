@@ -85,8 +85,8 @@ stages:
             - task: CmdLine@2
               displayName: 'Commit pages'
               inputs:
-                 script: |
-                  ./docs.sh
+                workingDirectory: '$(System.DefaultWorkingDirectory)/dist'
+                script: |
                   git config --global user.name "Azure Pipelines"
                   git config --global user.email "azuredevops@microsoft.com"
                   git add .
