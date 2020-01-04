@@ -82,25 +82,29 @@ stages:
           deploy:
             steps:
 
-            - script: |
-                git init
-                git config --local user.name "Azure Pipelines"
-                git config --local user.email "azuredevops@microsoft.com"
-                git add .
-                git commit -m "Auto-generated commit"
+            - task: CmdLine@2
               displayName: 'Commit changes'
-              workingDirectory: '$(Pipeline.Workspace)/website'
+              inputs:
+                script: |
+                  git init
+                  git config --local user.name "Azure Pipelines"
+                  git config --local user.email "azuredevops@microsoft.com"
+                  git add .
+                  git commit -m "Auto-generated commit"
+                workingDirectory: '$(Pipeline.Workspace)/website'
 
             - task: DownloadSecureFile@1
               displayName: 'Get the deploy key'
               inputs:
                 secureFile: GodelGithubPagesDeployKey
 
-            - script: |
-                mkdir ~/.ssh && mv $DOWNLOADSECUREFILE_SECUREFILEPATH ~/.ssh/id_rsa
-                chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
-                ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
-                git remote set-url --push origin git@github.com:Godel/godel.github.io.git
-                git push origin HEAD:master --force
+            - task: CmdLine@2
               displayName: 'Push in master branch'
-              workingDirectory: '$(Pipeline.Workspace)/website'
+              inputs:
+                script: |
+                  mkdir ~/.ssh && mv $DOWNLOADSECUREFILE_SECUREFILEPATH ~/.ssh/id_rsa
+                  chmod 700 ~/.ssh && chmod 600 ~/.ssh/id_rsa
+                  ssh-keyscan -t rsa github.com >> ~/.ssh/known_hosts
+                  git remote add origin git@github.com:Godel/godel.github.io.git
+                  git push origin HEAD:master --force
+                workingDirectory: '$(Pipeline.Workspace)/website'
