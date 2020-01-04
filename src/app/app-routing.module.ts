@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { APP_ROUTES } from './constants/app-routes.const';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
     {
-        path: APP_ROUTES.root,
+        path: '',
         children: [
             {
                 path: APP_ROUTES.dashboard,
@@ -19,7 +19,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, { useHash: true })],
     exports: [RouterModule]
 })
 export class AppRoutingModule { }
